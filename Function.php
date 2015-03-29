@@ -1,9 +1,6 @@
 <?php
-$hostname='localhost';
-$database='Secret';
-$my_name='twinkle8s';
-$my_password='cindy';
-$website_name="My SECERT";
+
+include "lala.php";
 
 mysql_connect($hostname, $my_name, $my_password) or die(mysql_error());
 mysql_query("SET NAMES 'UTF8'");
