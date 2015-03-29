@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+	td.td1 {border: 0px;
+		padding: 10px;
+		text-align: right;
+		font-family: Arial;
+	}
+	table {font-family: Arial;
+	}
+	table#t01 {border: 0px;
+		padding-left: 130px;
+	}
+	input#p01 {border: 0px;
+		background-color: blue;
+		color: white;
+	}
+	</style>
+</head>
+
+<body>
+<form>
+
+<table>
+	<tr>
+		<td class="td1">Username </td>
+		<td><input type="text" name="Username" placeholder="Username"></td>
+	</tr>
+	<tr>
+		<td class="td1">Password </td>
+		<td><input type="password" name="Password" placeholder="Password"></td>
+	</tr>
+	<tr>
+		<td class="td1">Gender </td>
+		<td><input type="checkbox" name="Gender" value="Male">Male<br>
+		    <input type="checkbox" name="Gender" value="Female">Female</td>
+	</tr>
+	<tr>
+		<td class="td1">Email Address </td>
+		<td><input type="email" name="Email Address" placeholder="Email Address"></td>
+	</tr>
+	<tr>
+		<td class="td1">Your Purchase </td>
+		<td><input type="checkbox" name="Product" value="Smartphone">Smartphone<br>
+		 	<input type="checkbox" name="Product" value="Tablet">Tablet<br>
+		 	<input type="checkbox" name="Product" value="Laptop">Laptop<br>
+		 	<input type="checkbox" name="Product" value="Desktop">Desktop<br>
+		 	<input type="checkbox" name="Product" value="Others">Others: <input type="text" name="Product"></td>
+	</tr>
+	<tr>
+		<td class="td1">Product Comment </td>
+		<td><input type="text" name="Comment" placeholder="Write something here..."></td>
+	</tr>
+</table>
+<table id="t01">
+	<tr>
+		<td><input type="checkbox">I've read the terms and condtions</td>
+	</tr>
+	<tr>
+		<td><input id="p01" type="submit" value="Submit"></td>
+	</tr>
+</table>
+
+</form>
+</body>
+</html>
