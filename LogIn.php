@@ -38,7 +38,7 @@ if (isset($_POST['username']))
 				$_SESSION['username']=$username;
 				$_SESSION['password']=$password;
 
-				header("refresh:1 ; url=http://localhost/SECRET.php");
+				header("refresh:1 ; url=http://localhost/message_board/SECRET.php");
 
 				die("<div class='content'><h2>$username, you are logged in successfully.</div></body></html>");
 			}
