@@ -1,6 +1,7 @@
 $(function() {
 
-	$("#post").on("click", function() {
+	$("form").submit(function(e) {
+		e.preventDefault();
 
 		$.ajax({
 
@@ -9,18 +10,22 @@ $(function() {
 			data: {username: $("#username").val(),
 				title: $("#title").val(),
 				content: $("#content").val()},
-			
+			dataType: "json",
 
 			success: function(msg) {
 				console.log(msg);
-				//$("#error1").text(function(error) {
-				//	return error;
-				//})
+				$("#table1").append("<tr><td>"+msg.name+
+					"</td><td>"+msg.title+
+					"</td><td>"+msg.time+
+					"</td><td><a class='ahref' href='Message.php?title="+msg.title+"'>Show</a>"+
+					"</td><td><a class='ahref' href='editMessage.php?title="+msg.title+"'>Edit</a>"+
+					"</td><td><a class='ahref' href='deleteMessage.php?title="+msg.title+"'>Delete</a>"+
+					"</td></tr>");
+			},
 
-				$("#table1").append("<tr>"+msg+"</td>");
+			error: function(msg) {
+				alert("fail");
 			}
-
-			error: function
 		});
 	});
 });

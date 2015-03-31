@@ -34,7 +34,7 @@ if (isset($_POST['password']))
 	{
 		queryMysql("UPDATE member SET password='$_newPW' WHERE password='$row[1]'");
 
-		header("refresh:1 ; url=http://localhost/showProfile.php");
+		header("refresh:1 ; url=showProfile.php");
 
 		die("<div class='content'><h2>Change successfully</h2></div></body></html>");
 	}

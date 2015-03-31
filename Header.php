@@ -18,8 +18,6 @@ else
 ?>
 	<title><?php echo $website_name ?></title>
 	<meta charset='UTF-8'>
-	<link rel='stylesheet' type='text/css' href='style.css'>
-	<script type='text/javascrpt' src="jquery-2.1.3.min.js"></script>
 	
 </head>
 

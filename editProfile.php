@@ -52,7 +52,7 @@ if (isset($_POST['username']))
 			changeProfile('address', $address, $row[5]);
 		}
 
-		header("refresh:1 ; url=http://localhost/showProfile.php");
+		header("refresh:1 ; url=showProfile.php");
 
 		die("<div class='content'><h2>Edit successfully</h2></div></body></html>");
 		

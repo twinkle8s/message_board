@@ -1,17 +1,11 @@
 <?php
 include_once 'Header.php';
-
-echo "<div class='content'><h2>LOVE SECRET</h2>";
-
-$error="";
-
-$query=queryMysql("SELECT * FROM message WHERE type='main'");
-$rows=mysql_num_rows($query);
-
 ?>
 
-<script type='text/javascrpt' src="jquery-2.1.3.min.js"></script>
-	<script type='text/javascrpt' src="message_board.js"></script>
+<div class='content'><h2>LOVE SECRET</h2>
+
+<script src="jquery-2.1.3.min.js"></script>
+<script src="message_board.js"></script>
 
 <table id='table1'>
   <tr>
@@ -22,6 +16,9 @@ $rows=mysql_num_rows($query);
   </tr>
 
 <?php
+
+$query=queryMysql("SELECT * FROM message WHERE type='main'");
+$rows=mysql_num_rows($query);
 
 for ($i=0; $i<$rows; $i++)
 {
@@ -49,20 +46,23 @@ for ($i=0; $i<$rows; $i++)
 
 </table>
 
-<form method='POST' action=''>
+<form id='post' method='POST' action=''>
 <fieldset>
 <legend>Post Message</legend>
 <span id='error1'></span>
 <br>
 <span>Name: <?php echo $username?></span>
-<input type='hidden' id='username' name='username' value='<?php $username ?>'>
+<input type='hidden' id='username' name='username' value="<?= $username ?>">
 <br>
 <span>Title: </span>
 <input type='text' id='title' name='title' maxlength='30' autofocus>
 <br>
 <span>Content: </span>
-<textarea name='content' rows='10' cols='30' maxlength='300'></textarea>
+<textarea id='content' name='content' rows='10' cols='30' maxlength='300'></textarea>
 <br>
-<span class='button'><input type='submit' id='post' value='Post'></span></fieldset>
+<span class='button'><input type='submit' value='Post'></span></fieldset>
 
-</form></div></body></html>
+</form></div>
+
+
+</body></html>

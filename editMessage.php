@@ -7,7 +7,7 @@ if (isset($_GET['title']))
 }
 else
 {
-	header("refresh:1 ; url=http://localhost/SECRET.php");
+	header("refresh:1 ; url=SECRET.php");
 
 	die("<div class='content'><h2>Sorry, we can't find this message</h2></div></body></html>");
 }
@@ -42,7 +42,7 @@ if (isset($_POST['title']))
 			queryMysql("UPDATE message SET content='$content' WHERE content='$result[3]' AND type='main'");
 		}
 
-		header("refresh:1 ; url=http://localhost/Message.php?title=$title");
+		header("refresh:1 ; url=Message.php?title=$title");
 
 		die("<div class='content'><h2>Edit successfully</h2></div></body></html>");
 	}
