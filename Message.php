@@ -23,7 +23,7 @@ $rows=mysql_num_rows($query);
 
 <div class='content'>
 
-<script src="jquery-2.1.3.min.js"></script>
+
 <script src="message_reply.js"></script>
 
 <table>

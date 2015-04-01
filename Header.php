@@ -18,6 +18,7 @@ else
 ?>
 	<title><?php echo $website_name ?></title>
 	<meta charset='UTF-8'>
+	<script src="jquery-2.1.3.min.js"></script>
 	
 </head>
 

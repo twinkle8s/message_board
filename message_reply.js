@@ -9,7 +9,7 @@ $(function() {
 			type: "POST",
 			data: {username: $("#username").val(),
 				title: $("#title").val(),
-				userReply: $("#userReply")},
+				userReply: $("#userReply").val()},
 			dataType: "json",
 
 			success: function(msg) {
@@ -20,15 +20,15 @@ $(function() {
 				}
 				else
 				{
-					$("#reply").preppend("<span>"+msg.name+
+					$("#reply").append("<span>"+msg.name+
 						"</span><span> : "+msg.userReply+
 						"</span><span>"+msg.time+"</span><br>");
 				}
-			}
+			},
 
 			error: function(msg) {
 				alert("fial to reply");
 			}
-		})
-	})
-})
+		});
+	});
+});

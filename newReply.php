@@ -5,8 +5,8 @@ $error="";
 
 if (isset($_POST['userReply']))
 {
-	$name=sanitize($_POST['$username']);
-	$title=sanitize($_POST['title'])
+	$name=sanitize($_POST['username']);
+	$title=sanitize($_POST['title']);
 	$userReply=sanitize($_POST['userReply']);
 
 	if ($userReply=="")
