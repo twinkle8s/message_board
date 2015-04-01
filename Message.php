@@ -12,24 +12,6 @@ else
 	die("<div class='content'><h2>Sorry, we can't find this message</h2></div></body></html>");
 }
 
-$error="";
-
-if (isset($_POST['userReply']))
-{
-	$name=$username;
-	$userReply=sanitize($_POST['userReply']);
-
-	if ($userReply=="")
-	{
-		$error="*Not all fields were entered";
-	}
-	else
-	{
-		queryMysql("INSERT INTO message (name, title, content, type, time)
-		 VALUES('$name', '$title', '$userReply', 'reply', NULL)");
-	}
-}
-
 $query=queryMysql("SELECT * FROM message WHERE title='$title' AND type='main'");
 $main=mysql_fetch_row($query);
 $main[5]=date("Y/m/d", strtotime($main[5]));
@@ -40,6 +22,10 @@ $rows=mysql_num_rows($query);
 ?>
 
 <div class='content'>
+
+<script src="jquery-2.1.3.min.js"></script>
+<script src="message_reply.js"></script>
+
 <table>
   <tr>
     <th>Name</th>
@@ -69,7 +55,7 @@ if ($main[0]==$username)
 }
 
 echo "</tr>" .
-  	"<tr><th>Reply</th><td>";
+  	"<tr><th>Reply</th><td id='reply'>";
 
 for ($i=0; $i<$rows; $i++)
 {
@@ -85,12 +71,14 @@ for ($i=0; $i<$rows; $i++)
 
 </td></tr></table></div>
 
-<div id='reply'>
+<div>
 <form method='POST' action=''>
-<span><?php echo $username ?></span>
-<span><input type='text' name='userReply' maxlength='30'></span>
+<span><?php echo $username ?>
+<input type='hidden' id='username' name='username' value='<?= $username ?>'></span>
+<input type='hidden' id='title' name='title' value='<?= $title ?>'>
+<span><input type='text' id='userReply' name='userReply' maxlength='30'></span>
 <span><input type='submit' value='Reply'></span>
 <br>
-<span class='error'><?php echo $error ?></span>
+<span id='error'></span>
 
 </form></div></body></html>

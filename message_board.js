@@ -14,17 +14,24 @@ $(function() {
 
 			success: function(msg) {
 				console.log(msg);
-				$("#table1").append("<tr><td>"+msg.name+
-					"</td><td>"+msg.title+
-					"</td><td>"+msg.time+
-					"</td><td><a class='ahref' href='Message.php?title="+msg.title+"'>Show</a>"+
-					"</td><td><a class='ahref' href='editMessage.php?title="+msg.title+"'>Edit</a>"+
-					"</td><td><a class='ahref' href='deleteMessage.php?title="+msg.title+"'>Delete</a>"+
-					"</td></tr>");
+				if ( msg.error!="" )
+				{
+					$("#error1").text(msg.error);
+				}
+				else
+				{
+					$("#table1").append("<tr><td>"+msg.name+
+						"</td><td>"+msg.title+
+						"</td><td>"+msg.time+
+						"</td><td><a class='ahref' href='Message.php?title="+msg.title+"'>Show</a>"+
+						"</td><td><a class='ahref' href='editMessage.php?title="+msg.title+"'>Edit</a>"+
+						"</td><td><a class='ahref' href='deleteMessage.php?title="+msg.title+"'>Delete</a>"+
+						"</td></tr>");
+				}
 			},
 
 			error: function(msg) {
-				alert("fail");
+				alert("fail to post");
 			}
 		});
 	});
