@@ -2,21 +2,22 @@
 include_once 'Header.php';
 ?>
 
-<div class='content'><h2>LOVE SECRET</h2>
+<div class='container'><h2>LOVE SECRET</h2>
 
-<script src="jquery-2.1.3.min.js"></script>
 <script src="message_board.js"></script>
 
-<table id='table1'>
+<table class="table">
+<thead>
   <tr>
     <th>Name</th>
     <th>Title</th>
     <th>Date</th>
     <th colspan='3'></th>
   </tr>
+</thead>
+<tbody>
 
 <?php
-
 $query=queryMysql("SELECT * FROM message WHERE type='main'");
 $rows=mysql_num_rows($query);
 
@@ -38,31 +39,41 @@ for ($i=0; $i<$rows; $i++)
 	}
 	else
 	{
-		echo "<td><a class='ahref' href='Message.php?title=$row[2]'>Show</a></td></tr>";
+		echo "<td><a class='ahref' href='Message.php?title=$row[2]'>Show</a></td>" .
+			"<td colspan='2'></td</tr>";
 	}
 }
-
 ?>
 
-</table>
+</tbody></table></div>
 
-<form id='post' method='POST' action=''>
-<fieldset>
-<legend>Post Message</legend>
-<span id='error1'></span>
-<br>
-<span>Name: <?php echo $username?></span>
-<input type='hidden' id='username' name='username' value="<?= $username ?>">
-<br>
-<span>Title: </span>
-<input type='text' id='title' name='title' maxlength='30' autofocus>
-<br>
-<span>Content: </span>
-<textarea id='content' name='content' rows='10' cols='30' maxlength='300'></textarea>
-<br>
-<span class='button'><input type='submit' value='Post'></span></fieldset>
-
-</form></div>
-
-
+<div class="container"><h2>Post Message</h2>
+<form id='post' class="form-horizontal" method='POST' action=''>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="name">Name:</label>
+		<div class="col-sm-6">
+			<p class="form-control-static"><?php echo $username?>
+			<input type='hidden' id='username' name='username' value="<?= $username ?>"></p>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="title">Title:</label>
+		<div class="col-sm-6">
+			<input type='text' id='title' class="form-control" name='title' maxlength='30'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="content">Content:</label>
+		<div class="col-sm-6">
+		<textarea id='content' class="form-control" name='content' rows='5' maxlength='300'></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-6">
+			<input type='submit' class="btn btn-default" value='Post'>
+			<span id='error'></span>
+		</div>
+	</div>
+</form>
+</div>
 </body></html>

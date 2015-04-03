@@ -1,0 +1,18 @@
+h1 {
+	text-align: center;
+}
+
+a:hover {
+	color: #337ab7;
+	text-decoration: none;
+}
+
+a:active {
+	color: #337ab7;
+	text-decoration: none;
+}
+
+#error {
+	color: red;
+	padding-left: 10px;
+}

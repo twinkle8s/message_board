@@ -16,11 +16,11 @@ $(function() {
 				console.log(msg);
 				if ( msg.error!="" )
 				{
-					$("#error1").text(msg.error);
+					$("#error").text(msg.error);
 				}
 				else
 				{
-					$("#table1").append("<tr><td>"+msg.name+
+					$(".table").append("<tr><td>"+msg.name+
 						"</td><td>"+msg.title+
 						"</td><td>"+msg.time+
 						"</td><td><a class='ahref' href='Message.php?title="+msg.title+"'>Show</a>"+
