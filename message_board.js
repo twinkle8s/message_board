@@ -23,9 +23,9 @@ $(function() {
 					$(".table").append("<tr><td>"+msg.name+
 						"</td><td>"+msg.title+
 						"</td><td>"+msg.time+
-						"</td><td><a class='ahref' href='Message.php?title="+msg.title+"'>Show</a>"+
-						"</td><td><a class='ahref' href='editMessage.php?title="+msg.title+"'>Edit</a>"+
-						"</td><td><a class='ahref' href='deleteMessage.php?title="+msg.title+"'>Delete</a>"+
+						"</td><td><a href='Message.php?title="+msg.title+"'>Show</a>"+
+						"</td><td><a href='editMessage.php?title="+msg.title+"'>Edit</a>"+
+						"</td><td><a href='deleteMessage.php?title="+msg.title+"'>Delete</a>"+
 						"</td></tr>");
 				}
 			},

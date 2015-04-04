@@ -9,7 +9,7 @@ else
 {
 	header("refresh:1 ; url=SECRET.php");
 
-	die("<div class='content'><h2>Sorry, we can't find this message</h2></div></body></html>");
+	die("<div class='container' style='text-align: center'><h2>Sorry, we can't find this message.</h2></div></body></html>");
 }
 
 $query=queryMysql("SELECT * FROM message WHERE title='$title' AND type='main'");
@@ -18,14 +18,13 @@ $main[5]=date("Y/m/d", strtotime($main[5]));
 
 $query=queryMysql("SELECT * FROM message WHERE title='$title' AND type='reply'");
 $rows=mysql_num_rows($query);
-
 ?>
 
-<div class='content'>
+<div class="container" style="margin-left: 30%"><h2>Main</h2>
 
 <script src="message_reply.js"></script>
 
-<table>
+<table class="table" style="width: 50%">
   <tr>
     <th>Name</th>
     <td><?php echo $main[1] ?></td>
@@ -39,45 +38,53 @@ $rows=mysql_num_rows($query);
     <td><?php echo $main[3] ?></td>
   </tr>
   <tr>
-    <th colspan='1'></th>
+    <th>Create Time</th>
     <td><?php echo $main[5] ?></td>
   </tr>
-  <tr>
-    <th colspan='1'></th>
 
 <?php
-
-if ($main[0]==$username)
+if ($main[1]==$username)
 {
-    echo "<td><a class='ahref' href='editMessage.php?title=<?php echo $main[2] ?>'>Edit</a>" .
-        "<a class='ahref' href='deleteMessage.php?title=<?php echo $main[2] ?>'>Delete</a></td>";
+    echo "<tr><td colspan='1'></td><td>" .
+        "<a href='editMessage.php?title=$main[2]'>Edit</a>" .
+        "&nbsp;&nbsp;&nbsp" .
+        "<a href='deleteMessage.php?title=$main[2]'> Delete</a></td></tr>";
 }
+?>
 
-echo "</tr>" .
-  	"<tr><th>Reply</th><td id='reply'>";
+</table>
+<h2>Reply</h2>
+<table id="reply" class="table" style="width: 50%">
+  <thead>
+    <th>Name</th>
+    <th>Reply</th>
+    <th>Time</th>
+  </thead>
 
+<?php
 for ($i=0; $i<$rows; $i++)
 {
 	$reply=mysql_fetch_row($query);
 	$reply[5]=date("Y/m/d", strtotime($reply[5]));
 
-	echo "<span>$reply[1]</span>" .
-		"<span> : $reply[3]</span>" .
-		"<span>$reply[5]</span><br>";
+	echo "<tr><td>$reply[1]</td>" .
+		"<td>$reply[3]</td>" .
+		"<td>$reply[5]</td></tr>";
 }
-
 ?>
 
-</td></tr></table></div>
+</table></div>
 
-<div>
-<form method='POST' action=''>
-<span><?php echo $username ?>
-<input type='hidden' id='username' name='username' value='<?= $username ?>'></span>
-<input type='hidden' id='title' name='title' value='<?= $title ?>'>
-<span><input type='text' id='userReply' name='userReply' maxlength='30'></span>
-<span><input type='submit' value='Reply'></span>
-<br>
+<div class="container" style="margin-left: 32%">
+<form class="form-inline" method='POST' action=''>
+  <div class="form-group">
+    <label for="username"><?php echo $username ?></label>
+    <input type='hidden' id='username' name='username' value='<?= $username ?>'>
+    <input type='hidden' id='title' name='title' value='<?= $title ?>'>
+    <input type='text' id='userReply' class="form-comtrol" name='userReply' maxlength='30'>
+  </div>
+  <input class="btn btn-default" type='submit' value='Reply'>
+
 <span id='error'></span>
 
 </form></div></body></html>

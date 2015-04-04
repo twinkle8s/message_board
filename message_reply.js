@@ -20,9 +20,9 @@ $(function() {
 				}
 				else
 				{
-					$("#reply").append("<span>"+msg.name+
-						"</span><span> : "+msg.userReply+
-						"</span><span>"+msg.time+"</span><br>");
+					$("#reply").append("<tr><td>"+msg.name+
+						"</td><td>"+msg.userReply+
+						"</td><td>"+msg.time+"</td></tr>");
 				}
 			},
 

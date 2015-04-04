@@ -33,13 +33,13 @@ for ($i=0; $i<$rows; $i++)
 
 	if ($row[1]==$username)
 	{
-		echo "<td><a class='ahref' href='Message.php?title=$row[2]'>Show</a></td>" .
-			"<td><a class='ahref' href='editMessage.php?title=$row[2]'>Edit</a></td>" .
-			"<td><a class='ahref' href='deleteMessage.php?title=$row[2]'>Delete</a></td></tr>";
+		echo "<td><a href='Message.php?title=$row[2]'>Show</a></td>" .
+			"<td><a href='editMessage.php?title=$row[2]'>Edit</a></td>" .
+			"<td><a href='deleteMessage.php?title=$row[2]'>Delete</a></td></tr>";
 	}
 	else
 	{
-		echo "<td><a class='ahref' href='Message.php?title=$row[2]'>Show</a></td>" .
+		echo "<td><a href='Message.php?title=$row[2]'>Show</a></td>" .
 			"<td colspan='2'></td</tr>";
 	}
 }
@@ -65,7 +65,7 @@ for ($i=0; $i<$rows; $i++)
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="content">Content:</label>
 		<div class="col-sm-6">
-		<textarea id='content' class="form-control" name='content' rows='5' maxlength='300'></textarea>
+			<textarea id='content' class="form-control" name='content' rows='5' maxlength='300'></textarea>
 		</div>
 	</div>
 	<div class="form-group">

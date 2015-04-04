@@ -9,42 +9,42 @@ $row[7]=date("Y/m/d H:i", strtotime($row[7]));
 
 ?>
 
-<div class='content'><h2>Profile</h2>
-<table>
+<div class="container" style="margin-left: 30%"><h2>Profile</h2>
+<table class="table" style="width: 50%">
   <tr>
-  	<td>Username</td>
+  	<th>Username</th>
   	<td><?php echo $row[0] ?></td>
   </tr>
   <tr>
-  	<td>Gender</td>
+  	<th>Gender</th>
   	<td><?php echo $row[1] ?></td>
   </tr>
   <tr>
-  	<td>Birthday</td>
+  	<th>Birthday</th>
   	<td><?php echo $row[2] ?></td>
   </tr>
   <tr>
-  	<td>Phone Number</td>
+  	<th>Phone Number</th>
   	<td><?php echo $row[3] ?></td>
   </tr>
   <tr>
-  	<td>E-mail</td>
+  	<th>E-mail</th>
   	<td><?php echo $row[4] ?></td>
   </tr>
   <tr>
-  	<td>Address</td>
+  	<th>Address</th>
   	<td><?php echo $row[5] ?></td>
   </tr>
   <tr>
-  	<td>Create Time</td>
+  	<th>Create Time</th>
   	<td><?php echo $row[6] ?></td>
   </tr>
   <tr>
-  	<td>Update Time</td>
+  	<th>Update Time</th>
   	<td><?php echo $row[7] ?></td>
   </tr>
 </table>
 
-<span id='edit'><input type='button' value='Edit' onclick="location.href='editProfile.php'"></sapn>
-<span id='changePW'><input type='button' value='Change Password' onclick="location.href='changePW.php'"></span>
+  <input type='button' class="btn btn-default" value='Edit' onclick="location.href='editProfile.php'">
+  <input type='button' class="btn btn-default" value='Change Password' onclick="location.href='changePW.php'">
 </div></body></html>

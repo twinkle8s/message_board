@@ -8,12 +8,12 @@ if (isset($_GET['title']))
 else
 {
 	header("refresh:1 ; url=SECRET.php");
-	die("<div class='content'><h2>Sorry, we can't find this message</h2></div></body></html>");
+	die("<div class='container' style='text-align: center'><h2>Sorry, we can't find this message.</h2></div></body></html>");
 }
 
 queryMysql("DELETE FROM message WHERE title='$title'");
 
 header("refresh:1 ; url=SECRET.php");
-die("<div class='content'><h2>Delete successfully</h2></div></body></html>");
+die("<div class='container' style='text-align: center'><h2>Delete successfully</h2></div></body></html>");
 
 ?>
