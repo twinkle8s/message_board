@@ -9,8 +9,8 @@ $row[7]=date("Y/m/d H:i", strtotime($row[7]));
 
 ?>
 
-<div class="container" style="margin-left: 30%"><h2>Profile</h2>
-<table class="table" style="width: 50%">
+<div class="container" style="margin: 0% 30%; width: 40%"><h2>Profile</h2>
+<table class="table">
   <tr>
   	<th>Username</th>
   	<td><?php echo $row[0] ?></td>

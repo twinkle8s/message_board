@@ -4,7 +4,7 @@ include_once 'Header.php';
 $query=queryMysql("SELECT * FROM member WHERE username='$username'");
 $row=mysql_fetch_row($query);
 
-$password=$newPW=$confirm="";
+$error=$password=$newPW=$confirm="";
 
 if (isset($_POST['password']))
 {
@@ -17,18 +17,15 @@ if (isset($_POST['password']))
 
 	if ($password=="" || $newPW=="" || $confirm=="")
 	{
-		echo "<div class='content'><h2>Change Password</h2>" .
-			 "<span class='error'>Not all required fields were entered</span><br><br>";
+		$error="*Not all required fields were entered";
 	}
 	elseif ($_password!=$row[1])
 	{
-		echo "<div class='content'><h2>Change Password</h2>" .
-			 "<span class='error'>Wrong old password</sapn><br><br>";
+		$error="*Wrong old password";
 	}
 	elseif ($confirm!=$newPW)
 	{
-		echo "<div class='content'><h2>Change Password</h2>" .
-			 "<span class='error'>Different password(new)</sapn><br><br>";
+		$error="*Different password(new)";
 	}
 	else
 	{
@@ -36,24 +33,36 @@ if (isset($_POST['password']))
 
 		header("refresh:1 ; url=showProfile.php");
 
-		die("<div class='content'><h2>Change successfully</h2></div></body></html>");
+		die("<div class='container' style='text-align: center'><h2>Change successfully</h2></div></body></html>");
 	}
 }
-else
-{
-	echo "<div class='content'><h2>Change Password</h2>";
-}
-
 ?>
 
-<form method='POST' action='changePW.php'>
-<span class='field'>Old Password </span>
-<input type='password' name='password' pattern="[a-zA-Z0-9]{6,32}"><br>
-<span class='field'>New Password </span>
-<input type='password' name='newPW' pattern="[a-zA-Z0-9]{6,32}"><br>
-<span class='field'>Password Confirm</span>
-<input type='password' name='confirm' pattern="[a-zA-Z0-9]{6,32}"><br><br>
-
-<span class='button'><input type='submit' value='Confirm'></span>
-
-</form></div></body></html>
+<div class='container' style="margin: 0% 30%; width: 40%"><h2>Change Password</h2></div>
+<form class="form-horizontal" style="margin: 0% 34%; width: 32%" method='POST' action='changePW.php'>
+	<div class="form-group">
+		<label class="control-label col-sm-4" for="password">Old Password</label>
+		<div class="col-sm-8">
+			<input type='password' class="form-control" name='password' pattern="[a-zA-Z0-9]{6,32}" autofocus>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-4" for="newPW">New Password</label>
+		<div class="col-sm-8">
+			<input type='password' class="form-control" name='newPW' pattern="[a-zA-Z0-9]{6,32}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-4" for="confirm">Password Confirm</label>
+		<div class="col-sm-8">
+			<input type='password' class="form-control" name='confirm' pattern="[a-zA-Z0-9]{6,32}">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-4 col-sm-8">
+			<input type='submit' class="btn btn-default" value='Confirm'>
+			<span id="error"><?php echo $error ?></span>
+		</div>
+	</div>
+</form>
+</body></html>

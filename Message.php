@@ -20,11 +20,11 @@ $query=queryMysql("SELECT * FROM message WHERE title='$title' AND type='reply'")
 $rows=mysql_num_rows($query);
 ?>
 
-<div class="container" style="margin-left: 30%"><h2>Main</h2>
+<div class="container" style="margin: 0% 30%; width: 40%"><h2>Main</h2>
 
 <script src="message_reply.js"></script>
 
-<table class="table" style="width: 50%">
+<table class="table">
   <tr>
     <th>Name</th>
     <td><?php echo $main[1] ?></td>
@@ -54,7 +54,7 @@ if ($main[1]==$username)
 
 </table>
 <h2>Reply</h2>
-<table id="reply" class="table" style="width: 50%">
+<table id="reply" class="table">
   <thead>
     <th>Name</th>
     <th>Reply</th>
@@ -75,10 +75,10 @@ for ($i=0; $i<$rows; $i++)
 
 </table></div>
 
-<div class="container" style="margin-left: 32%">
+<div class="container" style="margin: 0% 32%; width: 36%">
 <form class="form-inline" method='POST' action=''>
   <div class="form-group">
-    <label for="username"><?php echo $username ?></label>
+    <label for="name"><?php echo $username ?></label>
     <input type='hidden' id='username' name='username' value='<?= $username ?>'>
     <input type='hidden' id='title' name='title' value='<?= $title ?>'>
     <input type='text' id='userReply' class="form-comtrol" name='userReply' maxlength='30'>

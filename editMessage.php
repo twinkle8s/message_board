@@ -52,28 +52,28 @@ if (isset($_POST['title']))
 
 ?>
 
-<div class='container' style="margin-left: 30%"><h2>Edit Message</h2></div>
-<form class="form-horizontal" style="margin-left: 25%" method="POST" action="">
+<div class='container' style="margin: 0% 30%; width: 40%"><h2>Edit Message</h2></div>
+<form class="form-horizontal" style="margin: 0% 32%; width: 36%" method="POST" action="">
 	<div class="form-group">
-		<label class="control-label col-sm-2">Name:</label>
-		<div class="col-sm-6">
+		<label class="control-label col-sm-2" for="name">Name:</label>
+		<div class="col-sm-8">
 			<p class="form-control-static"><?php echo $username ?></p>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2">Title:</label>
-		<div class="col-sm-6">
+		<label class="control-label col-sm-2" for="title">Title:</label>
+		<div class="col-sm-8">
 			<input type='text' class="form-control" name='title' value="<?php echo $result[2] ?>" maxlength='30' autofocus>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2">Content:</label>
-		<div class="col-sm-6">
+		<label class="control-label col-sm-2" for="content">Content:</label>
+		<div class="col-sm-8">
 			<textarea class="form-control" name='content' rows='10' cols='30' maxlength='300'><?php echo $result[3] ?></textarea>
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-6">
+		<div class="col-sm-offset-2 col-sm-8">
 			<input type='submit' class="btn btn-default" value='Edit'>
 			<span id='error'><?php echo $error ?></span>
 		</div>
