@@ -8,27 +8,25 @@ if (isset($_GET['title']))
 else
 {
 	header("refresh:1 ; url=SECRET.php");
-
 	die("<div class='container' style='text-align: center'><h2>Sorry, we can't find this message.</h2></div></body></html>");
 }
 
 $error="";
 
-$query=queryMysql("SELECT * FROM message WHERE title='$title' AND type='main'");
-$result=mysql_fetch_row($query);
+$query="SELECT * FROM message WHERE title='$title' AND type='main'";
+$row=$connect->query($query);
+$result=$row->fetch_row();
 
 if (isset($_POST['title']))
 {
 	$title=sanitize($_POST['title']);
 	$content=sanitize($_POST['content']);
 
-	$q=queryMysql("SELECT * FROM message WHERE title='$title' AND type='main'");
-
 	if ($title=="" || $content=="")
 	{
 		$error="Not all fields were entered";
 	}
-	elseif ($title!=$result[2] && mysql_num_rows($q))
+	elseif ($title!=$result[2] && $row->num_rows>1)
 	{
 		$error="Sorry, that title name already exists";
 	}
@@ -36,12 +34,18 @@ if (isset($_POST['title']))
 	{
 		if ($title!=$result[2])
 		{
-			queryMysql("UPDATE message SET title='$title' WHERE title='$result[2]' AND type='main'");
+			$update="UPDATE message SET title=? WHERE title=? AND type='main'";
+			$stmt=$connect->prepare($update);
+			$stmt->bind_param("ss", $title, $result[2]);
+			$stmt->execute();
 		}
 
 		if ($content!=$result[3])
 		{
-			queryMysql("UPDATE message SET content='$content' WHERE content='$result[3]' AND type='main'");
+			$update="UPDATE message SET content=? WHERE content=? AND type='main'";
+			$stmt=$connect->prepare($update);
+			$stmt->bind_param("ss", $content, $result[3]);
+			$stmt->execute();
 		}
 
 		header("refresh:1 ; url=Message.php?title=$title");

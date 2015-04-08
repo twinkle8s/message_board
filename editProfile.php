@@ -1,63 +1,5 @@
 <?php
-include_once 'Header.php';
-
-$query=queryMysql("SELECT * FROM profile WHERE username='$username'");
-$row=mysql_fetch_row($query);
-$error="";
-
-if (isset($_POST['username']))
-{
-	$username=sanitize($_POST['username']);
-	$gender=sanitize($_POST['gender']);
-	$birthdate=sanitize($_POST['birthdate']);
-	$phone=sanitize($_POST['phone']);
-	$email=sanitize($_POST['email']);
-	$address=sanitize($_POST['address']);
-
-	if ($username=="")
-	{
-		$error="*Not all required fields were entered";
-	}
-	else
-	{
-		if ($username!=$row[0])
-		{
-			queryMysql("UPDATE member SET username='$username' WHERE username='$row[0]'");
-			changeProfile('username', $username, $row[0]);
-			$_SESSION['username']=$username;
-		}
-
-		if ($gender!=$row[1])
-		{
-			changeProfile('gender', $gender, $row[1]);
-		}
-
-		if ($birthdate!=$row[2])
-		{
-			changeProfile('birthdate', $birthdate, $row[2]);
-		}
-
-		if ($phone!=$row[3])
-		{
-			changeProfile('phone', $phone, $row[3]);
-		}
-
-		if ($email!=$row[4])
-		{
-			changeProfile('email', $email, $row[4]);
-		}
-
-		if ($address!=$row[5])
-		{
-			changeProfile('address', $address, $row[5]);
-		}
-
-		header("refresh:1 ; url=showProfile.php");
-
-		die("<div class='container' style='text-align: center'><h2>Edit successfully</h2></div></body></html>");
-		
-	}
-}
+include_once "editProfile_mysqli.php";
 ?>
 
 <div class='container' style="margin: 0% 32%; width: 36%"><h2>Edit profile</h2></div>
@@ -72,7 +14,7 @@ if (isset($_POST['username']))
 		<label class="control-label col-sm-4" for="gender">Gender</label>
 		<div class="radio col-sm-8">
 			<label><input type='radio' name='gender' value='male'>Male</label>
-			<label><input type='radio' name='gender' value='female'>Femal</label>
+			<label><input type='radio' name='gender' value='female'>Female</label>
 			<label><input type='radio' name='gender' value='' checked='checked'>None</label>
 		</div>
 	</div>

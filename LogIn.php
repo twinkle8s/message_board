@@ -15,14 +15,15 @@ if (isset($_POST['username']))
 	else
 	{
 		$query="SELECT username, password FROM member WHERE username='$username'";
+		$result=$connect->query($query);
 
-		if (!mysql_num_rows(queryMysql($query)))
+		if ($result->num_rows==0)
 		{
 			$error="*Username/Password Invalid";
 		}
 		else
 		{
-			$row=mysql_fetch_row(queryMysql($query));
+			$row=$result->fetch_row();
 
 			$token=addPW($password);
 
@@ -45,7 +46,7 @@ if (isset($_POST['username']))
 ?>
 
 <div class='container' style="margin: 0% 35%; width: 30%"><h2>Login</h2>
-<form class="form-horizontal"method='POST' action='LogIn.php'>
+<form class="form-horizontal" method='POST' action="">
 	<div class="form-group">
 		<label class="control-label col-sm-4" for="username">Username</label>
 		<div class="col-sm-8">

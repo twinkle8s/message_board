@@ -18,12 +18,13 @@ include_once 'Header.php';
 <tbody>
 
 <?php
-$query=queryMysql("SELECT * FROM message WHERE type='main'");
-$rows=mysql_num_rows($query);
+$query="SELECT * FROM message WHERE type='main'";
+$result=$connect->query($query);
+$rows=$result->num_rows;
 
 for ($i=0; $i<$rows; $i++)
 {
-	$row=mysql_fetch_row($query);
+	$row=$result->fetch_row();
 	$row[5]=date("Y/m/d", strtotime($row[5]));
 
 	echo "<tr>" .

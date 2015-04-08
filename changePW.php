@@ -1,8 +1,9 @@
 <?php
 include_once 'Header.php';
 
-$query=queryMysql("SELECT * FROM member WHERE username='$username'");
-$row=mysql_fetch_row($query);
+$query="SELECT * FROM member WHERE username='$username'";
+$result=$connect->query($query);
+$row=$result->fetch_row();
 
 $error=$password=$newPW=$confirm="";
 
@@ -29,10 +30,12 @@ if (isset($_POST['password']))
 	}
 	else
 	{
-		queryMysql("UPDATE member SET password='$_newPW' WHERE password='$row[1]'");
-
+		$update="UPDATE member SET password=? WHERE password=?";
+		$stmt=$connect->prepare($update);
+		$stmt->bind_param("ss", $_newPW, $row[1]);
+		$stmt->execute();
+		
 		header("refresh:1 ; url=showProfile.php");
-
 		die("<div class='container' style='text-align: center'><h2>Change successfully</h2></div></body></html>");
 	}
 }

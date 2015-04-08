@@ -2,15 +2,14 @@
 
 include "lala.php";
 
-mysql_connect($hostname, $my_name, $my_password) or die(mysql_error());
-mysql_query("SET NAMES 'UTF8'");
-mysql_select_db($database) or die(mysql_error());
+$connect = new mysqli($hostname, $my_name, $my_password, $database);
 
-function queryMysql($query)
+if (!$connect)
 {
-	$result=mysql_query($query) or die(mysql_error());
-	return $result;
+	echo "connect to database error!";
 }
+
+$connect->query("SET NAMES UTF8");
 
 function destroySessionData()
 {
@@ -29,7 +28,7 @@ function sanitize($var)
 	$var=strip_tags($var);
 	$var=htmlentities($var);
 	$var=stripslashes($var);
-	return mysql_real_escape_string($var);
+	return $var;
 }
 
 function addPW($var)
@@ -38,13 +37,4 @@ function addPW($var)
 	$pw2="x%ola!q?";
 	return sha1("$pw1$var$pw2");
 }
-
-function changeProfile($field, $new, $old)
-{
-	$query="UPDATE profile SET $field='$new' WHERE $field='$old'";
-	$result=queryMysql($query);
-
-	return $result;
-}
-
 ?>

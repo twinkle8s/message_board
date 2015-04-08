@@ -8,16 +8,17 @@ if (isset($_GET['title']))
 else
 {
 	header("refresh:1 ; url=SECRET.php");
-
 	die("<div class='container' style='text-align: center'><h2>Sorry, we can't find this message.</h2></div></body></html>");
 }
 
-$query=queryMysql("SELECT * FROM message WHERE title='$title' AND type='main'");
-$main=mysql_fetch_row($query);
+$query="SELECT * FROM message WHERE title='$title' AND type='main'";
+$result=$connect->query($query);
+$main=$result->fetch_row();
 $main[5]=date("Y/m/d", strtotime($main[5]));
 
-$query=queryMysql("SELECT * FROM message WHERE title='$title' AND type='reply'");
-$rows=mysql_num_rows($query);
+$query="SELECT * FROM message WHERE title='$title' AND type='reply'";
+$result=$connect->query($query);
+$rows=$result->num_rows;
 ?>
 
 <div class="container" style="margin: 0% 30%; width: 40%"><h2>Main</h2>
@@ -64,7 +65,7 @@ if ($main[1]==$username)
 <?php
 for ($i=0; $i<$rows; $i++)
 {
-	$reply=mysql_fetch_row($query);
+	$reply=$result->fetch_row();
 	$reply[5]=date("Y/m/d", strtotime($reply[5]));
 
 	echo "<tr><td>$reply[1]</td>" .

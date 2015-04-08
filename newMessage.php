@@ -9,17 +9,23 @@ if (isset($_POST['title']))
 	$title=sanitize($_POST['title']);
 	$content=sanitize($_POST['content']);
 
+	$select="SELECT * FROM message WHERE title='$title' AND type='main'";
+	$result=$connect->query($select);
+
 	if ($title=="" || $content==""){
 		$error="*Not all fields were entered";
 	}
-	elseif (mysql_num_rows(queryMysql("SELECT * FROM message WHERE title='$title' AND type='main'")))
+	elseif ($result->num_rows>0)
 	{
 		$error="*Sorry, that title name already exists";
 	}
 	else
 	{
-		queryMysql("INSERT INTO message (name, title, content, type, time) 
-			VALUES('$name', '$title', '$content', 'main', NULL)");
+		$type="main";
+		$query="INSERT INTO message (name, title, content, type) VALUES(?,?,?,?)";
+		$stmt=$connect->prepare($query);
+		$stmt->bind_param("ssss", $name, $title, $content, $type);
+		$stmt->execute();
 	}
 }
 

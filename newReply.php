@@ -15,8 +15,11 @@ if (isset($_POST['userReply']))
 	}
 	else
 	{
-		queryMysql("INSERT INTO message (name, title, content, type, time)
-		 VALUES('$name', '$title', '$userReply', 'reply', NULL)");
+		$type="reply";
+		$query="INSERT INTO message (name, title, content, type) VALUES(?,?,?,?)";
+		$stmt=$connect->prepare($query);
+		$stmt->bind_param("ssss", $name, $title, $userReply, $type);
+		$stmt->execute();
 	}
 }
 
