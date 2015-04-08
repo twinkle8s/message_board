@@ -1,8 +1,9 @@
 <?php
 include_once 'Header.php';
 
-$query=queryMysql("SELECT * FROM profile WHERE username='$username'");
-$row=mysql_fetch_row($query);
+$query="SELECT * FROM profile WHERE username='$username'";
+$result=$connect->query($query);
+$row=$result->fetch_row();
 
 $row[6]=date("Y/m/d H:i", strtotime($row[6]));
 $row[7]=date("Y/m/d H:i", strtotime($row[7]));
